@@ -56,7 +56,16 @@ class _ListasWidgetState extends State<ListasWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    Navigator.pop(context);
+                    context.pushNamed(
+                      'Home',
+                      extra: <String, dynamic>{
+                        kTransitionInfoKey: const TransitionInfo(
+                          hasTransition: true,
+                          transitionType: PageTransitionType.rightToLeft,
+                          duration: Duration(milliseconds: 300),
+                        ),
+                      },
+                    );
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
