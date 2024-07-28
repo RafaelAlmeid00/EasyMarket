@@ -355,12 +355,12 @@ class _ProdWidgetState extends State<ProdWidget> {
                         ),
                       ),
                       Container(
-                        width: double.infinity,
+                        width: MediaQuery.sizeOf(context).width * 1.0,
                         height: 200.0,
                         decoration: const BoxDecoration(),
                         child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Row(
                               mainAxisSize: MainAxisSize.max,
