@@ -315,8 +315,7 @@ class _ProdWidgetState extends State<ProdWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                      padding: const EdgeInsets.all(24.0),
                       child: Text(
                         valueOrDefault<String>(
                           columnProductRecord?.name,
@@ -324,9 +323,8 @@ class _ProdWidgetState extends State<ProdWidget> {
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Inter',
-                              fontSize: 18.0,
+                              fontSize: 16.0,
                               letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
                             ),
                       ),
                     ),
