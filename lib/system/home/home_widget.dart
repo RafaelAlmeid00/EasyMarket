@@ -98,83 +98,85 @@ class _HomeWidgetState extends State<HomeWidget> {
               ),
               Padding(
                 padding: const EdgeInsets.all(24.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.library_books_rounded,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      size: 25.0,
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Listas de Compras',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
-                              fontSize: 16.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
-                            ),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed('listas');
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.library_books_rounded,
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        size: 25.0,
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Listas de Compras',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Inter',
+                                    fontSize: 16.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(24.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.archive_rounded,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      size: 25.0,
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Compras Passadas',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
-                              fontSize: 16.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
-                            ),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed(
+                      'SimpleProfile',
+                      extra: <String, dynamic>{
+                        kTransitionInfoKey: const TransitionInfo(
+                          hasTransition: true,
+                          transitionType: PageTransitionType.rightToLeft,
+                          duration: Duration(milliseconds: 300),
+                        ),
+                      },
+                    );
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.settings_outlined,
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        size: 25.0,
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.settings_outlined,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      size: 25.0,
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Configuração',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
-                              fontSize: 16.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
-                            ),
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Configuração',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Inter',
+                                    fontSize: 16.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

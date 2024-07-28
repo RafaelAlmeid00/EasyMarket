@@ -173,29 +173,39 @@ class _ProdWidgetState extends State<ProdWidget> {
               ),
               Padding(
                 padding: const EdgeInsets.all(24.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.settings_outlined,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      size: 25.0,
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Configuração',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
-                              fontSize: 16.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
-                            ),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed('SimpleProfile');
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.settings_outlined,
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        size: 25.0,
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Configuração',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Inter',
+                                    fontSize: 16.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
