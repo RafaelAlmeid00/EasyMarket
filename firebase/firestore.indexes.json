@@ -17,28 +17,6 @@
           "order": "ASCENDING"
         }
       ]
-    },
-    {
-      "collectionGroup": "product",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "list",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "dono",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "name",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "created_at",
-          "order": "ASCENDING"
-        }
-      ]
     }
   ]
 }

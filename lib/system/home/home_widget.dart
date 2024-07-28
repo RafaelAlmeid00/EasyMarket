@@ -32,9 +32,6 @@ class _HomeWidgetState extends State<HomeWidget> {
 
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
-
-    _model.textController3 ??= TextEditingController();
-    _model.textFieldFocusNode3 ??= FocusNode();
   }
 
   @override
@@ -270,546 +267,235 @@ class _HomeWidgetState extends State<HomeWidget> {
                         ),
                       ),
                     ),
-                    if (FFAppState().listCreate == 1)
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 20.0, 8.0, 0.0),
-                        child: SizedBox(
-                          width: MediaQuery.sizeOf(context).width * 0.7,
-                          child: TextFormField(
-                            controller: _model.textController1,
-                            focusNode: _model.textFieldFocusNode1,
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Pesquisar Produto...',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              contentPadding: const EdgeInsets.all(15.0),
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Inter',
-                                  letterSpacing: 0.0,
-                                ),
-                            validator: _model.textController1Validator
-                                .asValidator(context),
-                          ),
-                        ),
-                      ),
                     Container(
                       width: double.infinity,
                       height: 450.0,
                       decoration: const BoxDecoration(),
                       child: Stack(
                         children: [
-                          if (_model.textController1.text == '')
-                            PagedListView<DocumentSnapshot<Object?>?,
-                                ProductRecord>(
-                              pagingController: _model.setListViewController1(
-                                ProductRecord.collection
-                                    .where(
-                                      'list',
-                                      isEqualTo: _model.list?.nome,
-                                    )
-                                    .where(
-                                      'dono',
-                                      isEqualTo: currentUserEmail,
-                                    )
-                                    .orderBy('created_at'),
+                          PagedListView<DocumentSnapshot<Object?>?,
+                              ProductRecord>(
+                            pagingController: _model.setListViewController(
+                              ProductRecord.collection
+                                  .where(
+                                    'list',
+                                    isEqualTo: _model.list?.nome,
+                                  )
+                                  .where(
+                                    'dono',
+                                    isEqualTo: currentUserEmail,
+                                  )
+                                  .orderBy('created_at'),
+                            ),
+                            padding: EdgeInsets.zero,
+                            reverse: false,
+                            scrollDirection: Axis.vertical,
+                            builderDelegate:
+                                PagedChildBuilderDelegate<ProductRecord>(
+                              // Customize what your widget looks like when it's loading the first page.
+                              firstPageProgressIndicatorBuilder: (_) => Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
+                                  ),
+                                ),
                               ),
-                              padding: EdgeInsets.zero,
-                              reverse: false,
-                              scrollDirection: Axis.vertical,
-                              builderDelegate:
-                                  PagedChildBuilderDelegate<ProductRecord>(
-                                // Customize what your widget looks like when it's loading the first page.
-                                firstPageProgressIndicatorBuilder: (_) =>
-                                    Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
-                                      ),
+                              // Customize what your widget looks like when it's loading another page.
+                              newPageProgressIndicatorBuilder: (_) => Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
                                     ),
                                   ),
                                 ),
-                                // Customize what your widget looks like when it's loading another page.
-                                newPageProgressIndicatorBuilder: (_) => Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                              ),
 
-                                itemBuilder: (context, _, listViewIndex) {
-                                  final listViewProductRecord = _model
-                                      .listViewPagingController1!
-                                      .itemList![listViewIndex];
-                                  return Visibility(
-                                    visible: FFAppState().listCreate == 1,
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          20.0, 20.0, 20.0, 0.0),
-                                      child: InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          context.pushNamed(
-                                            'Prod',
-                                            queryParameters: {
-                                              'prod': serializeParam(
-                                                listViewProductRecord.name,
-                                                ParamType.String,
-                                              ),
-                                              'list': serializeParam(
-                                                listViewProductRecord.list,
-                                                ParamType.String,
-                                              ),
-                                            }.withoutNulls,
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  const TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .rightToLeft,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                              ),
-                                            },
-                                          );
-                                        },
-                                        child: Card(
-                                          clipBehavior:
-                                              Clip.antiAliasWithSaveLayer,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          elevation: 4.0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 0.0, 20.0, 0.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.all(15.0),
-                                                  child: Text(
-                                                    listViewProductRecord.name,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          100.0, 0.0, 0.0, 0.0),
-                                                  child: Theme(
-                                                    data: ThemeData(
-                                                      checkboxTheme:
-                                                          CheckboxThemeData(
-                                                        visualDensity:
-                                                            VisualDensity
-                                                                .standard,
-                                                        materialTapTargetSize:
-                                                            MaterialTapTargetSize
-                                                                .padded,
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      4.0),
-                                                        ),
+                              itemBuilder: (context, _, listViewIndex) {
+                                final listViewProductRecord = _model
+                                    .listViewPagingController!
+                                    .itemList![listViewIndex];
+                                return Visibility(
+                                  visible: FFAppState().listCreate == 1,
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        20.0, 20.0, 20.0, 0.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed(
+                                          'Prod',
+                                          queryParameters: {
+                                            'prod': serializeParam(
+                                              listViewProductRecord.name,
+                                              ParamType.String,
+                                            ),
+                                            'list': serializeParam(
+                                              listViewProductRecord.list,
+                                              ParamType.String,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: const TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType: PageTransitionType
+                                                  .rightToLeft,
+                                              duration:
+                                                  Duration(milliseconds: 300),
+                                            ),
+                                          },
+                                        );
+                                      },
+                                      child: Card(
+                                        clipBehavior:
+                                            Clip.antiAliasWithSaveLayer,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        elevation: 4.0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  20.0, 0.0, 20.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.all(15.0),
+                                                child: Text(
+                                                  listViewProductRecord.name,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        letterSpacing: 0.0,
                                                       ),
-                                                      unselectedWidgetColor:
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        100.0, 0.0, 0.0, 0.0),
+                                                child: Theme(
+                                                  data: ThemeData(
+                                                    checkboxTheme:
+                                                        CheckboxThemeData(
+                                                      visualDensity:
+                                                          VisualDensity
+                                                              .standard,
+                                                      materialTapTargetSize:
+                                                          MaterialTapTargetSize
+                                                              .padded,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4.0),
+                                                      ),
+                                                    ),
+                                                    unselectedWidgetColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondaryText,
+                                                  ),
+                                                  child: Checkbox(
+                                                    value: _model
+                                                                .checkboxValueMap[
+                                                            listViewProductRecord] ??=
+                                                        listViewProductRecord
+                                                            .check,
+                                                    onChanged:
+                                                        (newValue) async {
+                                                      setState(() => _model
+                                                                  .checkboxValueMap[
+                                                              listViewProductRecord] =
+                                                          newValue!);
+                                                      if (newValue!) {
+                                                        await listViewProductRecord
+                                                            .reference
+                                                            .update(
+                                                                createProductRecordData(
+                                                          check: true,
+                                                        ));
+                                                      } else {
+                                                        await listViewProductRecord
+                                                            .reference
+                                                            .update({
+                                                          ...createProductRecordData(
+                                                            check: false,
+                                                          ),
+                                                          ...mapToFirestore(
+                                                            {
+                                                              'modified_at':
+                                                                  FieldValue
+                                                                      .serverTimestamp(),
+                                                            },
+                                                          ),
+                                                        });
+                                                      }
+                                                    },
+                                                    side: BorderSide(
+                                                      width: 2,
+                                                      color:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .secondaryText,
                                                     ),
-                                                    child: Checkbox(
-                                                      value: _model
-                                                                  .checkboxValueMap1[
-                                                              listViewProductRecord] ??=
-                                                          listViewProductRecord
-                                                              .check,
-                                                      onChanged:
-                                                          (newValue) async {
-                                                        setState(() => _model
-                                                                    .checkboxValueMap1[
-                                                                listViewProductRecord] =
-                                                            newValue!);
-                                                        if (newValue!) {
-                                                          await listViewProductRecord
-                                                              .reference
-                                                              .update(
-                                                                  createProductRecordData(
-                                                            check: true,
-                                                          ));
-                                                        } else {
-                                                          await listViewProductRecord
-                                                              .reference
-                                                              .update({
-                                                            ...createProductRecordData(
-                                                              check: false,
-                                                            ),
-                                                            ...mapToFirestore(
-                                                              {
-                                                                'modified_at':
-                                                                    FieldValue
-                                                                        .serverTimestamp(),
-                                                              },
-                                                            ),
-                                                          });
-                                                        }
-                                                      },
-                                                      side: BorderSide(
-                                                        width: 2,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                      ),
-                                                      activeColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondary,
-                                                      checkColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .info,
-                                                    ),
+                                                    activeColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondary,
+                                                    checkColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .info,
                                                   ),
                                                 ),
-                                                InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    await listViewProductRecord
-                                                        .reference
-                                                        .delete();
-                                                  },
-                                                  child: Icon(
-                                                    Icons.delete_sharp,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    size: 24.0,
-                                                  ),
+                                              ),
+                                              InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  await listViewProductRecord
+                                                      .reference
+                                                      .delete();
+                                                },
+                                                child: Icon(
+                                                  Icons.delete_sharp,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  size: 24.0,
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),
                                     ),
-                                  );
-                                },
-                              ),
-                            ),
-                          if (_model.textController1.text != '')
-                            PagedListView<DocumentSnapshot<Object?>?,
-                                ProductRecord>(
-                              pagingController: _model.setListViewController2(
-                                ProductRecord.collection
-                                    .where(
-                                      'list',
-                                      isEqualTo: _model.list?.nome,
-                                    )
-                                    .where(
-                                      'dono',
-                                      isEqualTo: currentUserEmail,
-                                    )
-                                    .where(
-                                      'name',
-                                      isEqualTo: _model.textController1.text,
-                                    )
-                                    .orderBy('created_at'),
-                              ),
-                              padding: EdgeInsets.zero,
-                              reverse: false,
-                              scrollDirection: Axis.vertical,
-                              builderDelegate:
-                                  PagedChildBuilderDelegate<ProductRecord>(
-                                // Customize what your widget looks like when it's loading the first page.
-                                firstPageProgressIndicatorBuilder: (_) =>
-                                    Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
-                                      ),
-                                    ),
                                   ),
-                                ),
-                                // Customize what your widget looks like when it's loading another page.
-                                newPageProgressIndicatorBuilder: (_) => Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-
-                                itemBuilder: (context, _, listViewIndex) {
-                                  final listViewProductRecord = _model
-                                      .listViewPagingController2!
-                                      .itemList![listViewIndex];
-                                  return Visibility(
-                                    visible: FFAppState().listCreate == 1,
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          20.0, 20.0, 20.0, 0.0),
-                                      child: InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          context.pushNamed(
-                                            'Prod',
-                                            queryParameters: {
-                                              'prod': serializeParam(
-                                                listViewProductRecord.name,
-                                                ParamType.String,
-                                              ),
-                                              'list': serializeParam(
-                                                listViewProductRecord.list,
-                                                ParamType.String,
-                                              ),
-                                            }.withoutNulls,
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  const TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .rightToLeft,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                              ),
-                                            },
-                                          );
-                                        },
-                                        child: Card(
-                                          clipBehavior:
-                                              Clip.antiAliasWithSaveLayer,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          elevation: 4.0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 0.0, 20.0, 0.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.all(15.0),
-                                                  child: Text(
-                                                    listViewProductRecord.name,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          100.0, 0.0, 0.0, 0.0),
-                                                  child: Theme(
-                                                    data: ThemeData(
-                                                      checkboxTheme:
-                                                          CheckboxThemeData(
-                                                        visualDensity:
-                                                            VisualDensity
-                                                                .standard,
-                                                        materialTapTargetSize:
-                                                            MaterialTapTargetSize
-                                                                .padded,
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      4.0),
-                                                        ),
-                                                      ),
-                                                      unselectedWidgetColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                    ),
-                                                    child: Checkbox(
-                                                      value: _model
-                                                                  .checkboxValueMap2[
-                                                              listViewProductRecord] ??=
-                                                          listViewProductRecord
-                                                              .check,
-                                                      onChanged:
-                                                          (newValue) async {
-                                                        setState(() => _model
-                                                                    .checkboxValueMap2[
-                                                                listViewProductRecord] =
-                                                            newValue!);
-                                                        if (newValue!) {
-                                                          await listViewProductRecord
-                                                              .reference
-                                                              .update(
-                                                                  createProductRecordData(
-                                                            check: true,
-                                                          ));
-                                                        } else {
-                                                          await listViewProductRecord
-                                                              .reference
-                                                              .update({
-                                                            ...createProductRecordData(
-                                                              check: false,
-                                                            ),
-                                                            ...mapToFirestore(
-                                                              {
-                                                                'modified_at':
-                                                                    FieldValue
-                                                                        .serverTimestamp(),
-                                                              },
-                                                            ),
-                                                          });
-                                                        }
-                                                      },
-                                                      side: BorderSide(
-                                                        width: 2,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                      ),
-                                                      activeColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondary,
-                                                      checkColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .info,
-                                                    ),
-                                                  ),
-                                                ),
-                                                InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    await listViewProductRecord
-                                                        .reference
-                                                        .delete();
-                                                  },
-                                                  child: Icon(
-                                                    Icons.delete_sharp,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    size: 24.0,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
+                                );
+                              },
                             ),
+                          ),
                         ],
                       ),
                     ),
@@ -831,8 +517,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                           SizedBox(
                             width: MediaQuery.sizeOf(context).width * 0.8,
                             child: TextFormField(
-                              controller: _model.textController2,
-                              focusNode: _model.textFieldFocusNode2,
+                              controller: _model.textController1,
+                              focusNode: _model.textFieldFocusNode1,
                               autofocus: true,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -886,7 +572,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     fontFamily: 'Inter',
                                     letterSpacing: 0.0,
                                   ),
-                              validator: _model.textController2Validator
+                              validator: _model.textController1Validator
                                   .asValidator(context),
                             ),
                           ),
@@ -899,10 +585,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 onPressed: () async {
                                   await ListRecord.collection
                                       .doc(
-                                          '$currentUserUid${_model.textController2.text}')
+                                          '$currentUserUid${_model.textController1.text}')
                                       .set({
                                     ...createListRecordData(
-                                      nome: _model.textController2.text,
+                                      nome: _model.textController1.text,
                                       dono: currentUserEmail,
                                     ),
                                     ...mapToFirestore(
@@ -968,8 +654,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                           SizedBox(
                             width: MediaQuery.sizeOf(context).width * 0.8,
                             child: TextFormField(
-                              controller: _model.textController3,
-                              focusNode: _model.textFieldFocusNode3,
+                              controller: _model.textController2,
+                              focusNode: _model.textFieldFocusNode2,
                               autofocus: true,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -1023,7 +709,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     fontFamily: 'Inter',
                                     letterSpacing: 0.0,
                                   ),
-                              validator: _model.textController3Validator
+                              validator: _model.textController2Validator
                                   .asValidator(context),
                             ),
                           ),
@@ -1036,10 +722,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 onPressed: () async {
                                   await ProductRecord.collection
                                       .doc(
-                                          '$currentUserUid${_model.textController3.text}')
+                                          '$currentUserUid${_model.textController2.text}')
                                       .set({
                                     ...createProductRecordData(
-                                      name: _model.textController3.text,
+                                      name: _model.textController2.text,
                                       check: false,
                                       list: _model.list?.nome,
                                       dono: currentUserEmail,
