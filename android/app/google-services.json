@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "195825649457",
+    "project_id": "easy-market-9aagwk",
+    "storage_bucket": "easy-market-9aagwk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:195825649457:android:1824f7c70df797dae1d210",
+        "android_client_info": {
+          "package_name": "com.mycompany.easymarket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "195825649457-76ds662iiake2fqb90auk2abanr20kch.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.easymarket",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "195825649457-6tu4805t8q9gtn7vi9vd5blesu015bcj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA32J2op1AHTozr-4XsJkPAx585sAiUGQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "195825649457-6tu4805t8q9gtn7vi9vd5blesu015bcj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "195825649457-7efrspm67got0odr9ng8f5eu038evb96.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.easymarket"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
