@@ -108,6 +108,36 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'UserSelect',
+          path: '/userSelect',
+          builder: (context, params) => const UserSelectWidget(),
+        ),
+        FFRoute(
+          name: 'SimpleProfile',
+          path: '/simpleProfile',
+          builder: (context, params) => const SimpleProfileWidget(),
+        ),
+        FFRoute(
+          name: 'edit',
+          path: '/edit',
+          builder: (context, params) => const EditWidget(),
+        ),
+        FFRoute(
+          name: 'listas',
+          path: '/listas',
+          builder: (context, params) => const ListasWidget(),
+        ),
+        FFRoute(
+          name: 'ProdtList',
+          path: '/prodtList',
+          builder: (context, params) => ProdtListWidget(
+            list: params.getParam(
+              'list',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

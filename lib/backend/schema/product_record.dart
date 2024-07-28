@@ -75,6 +75,36 @@ class ProductRecord extends FirestoreRecord {
   String get dono => _dono ?? '';
   bool hasDono() => _dono != null;
 
+  // "price4" field.
+  double? _price4;
+  double get price4 => _price4 ?? 0.0;
+  bool hasPrice4() => _price4 != null;
+
+  // "price5" field.
+  double? _price5;
+  double get price5 => _price5 ?? 0.0;
+  bool hasPrice5() => _price5 != null;
+
+  // "price6" field.
+  double? _price6;
+  double get price6 => _price6 ?? 0.0;
+  bool hasPrice6() => _price6 != null;
+
+  // "mercado4" field.
+  String? _mercado4;
+  String get mercado4 => _mercado4 ?? '';
+  bool hasMercado4() => _mercado4 != null;
+
+  // "mercado5" field.
+  String? _mercado5;
+  String get mercado5 => _mercado5 ?? '';
+  bool hasMercado5() => _mercado5 != null;
+
+  // "mercado6" field.
+  String? _mercado6;
+  String get mercado6 => _mercado6 ?? '';
+  bool hasMercado6() => _mercado6 != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _createdAt = snapshotData['created_at'] as DateTime?;
@@ -88,6 +118,12 @@ class ProductRecord extends FirestoreRecord {
     _list = snapshotData['list'] as String?;
     _check = snapshotData['check'] as bool?;
     _dono = snapshotData['dono'] as String?;
+    _price4 = castToType<double>(snapshotData['price4']);
+    _price5 = castToType<double>(snapshotData['price5']);
+    _price6 = castToType<double>(snapshotData['price6']);
+    _mercado4 = snapshotData['mercado4'] as String?;
+    _mercado5 = snapshotData['mercado5'] as String?;
+    _mercado6 = snapshotData['mercado6'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -137,6 +173,12 @@ Map<String, dynamic> createProductRecordData({
   String? list,
   bool? check,
   String? dono,
+  double? price4,
+  double? price5,
+  double? price6,
+  String? mercado4,
+  String? mercado5,
+  String? mercado6,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -152,6 +194,12 @@ Map<String, dynamic> createProductRecordData({
       'list': list,
       'check': check,
       'dono': dono,
+      'price4': price4,
+      'price5': price5,
+      'price6': price6,
+      'mercado4': mercado4,
+      'mercado5': mercado5,
+      'mercado6': mercado6,
     }.withoutNulls,
   );
 
@@ -174,7 +222,13 @@ class ProductRecordDocumentEquality implements Equality<ProductRecord> {
         e1?.mercado3 == e2?.mercado3 &&
         e1?.list == e2?.list &&
         e1?.check == e2?.check &&
-        e1?.dono == e2?.dono;
+        e1?.dono == e2?.dono &&
+        e1?.price4 == e2?.price4 &&
+        e1?.price5 == e2?.price5 &&
+        e1?.price6 == e2?.price6 &&
+        e1?.mercado4 == e2?.mercado4 &&
+        e1?.mercado5 == e2?.mercado5 &&
+        e1?.mercado6 == e2?.mercado6;
   }
 
   @override
@@ -190,7 +244,13 @@ class ProductRecordDocumentEquality implements Equality<ProductRecord> {
         e?.mercado3,
         e?.list,
         e?.check,
-        e?.dono
+        e?.dono,
+        e?.price4,
+        e?.price5,
+        e?.price6,
+        e?.mercado4,
+        e?.mercado5,
+        e?.mercado6
       ]);
 
   @override
