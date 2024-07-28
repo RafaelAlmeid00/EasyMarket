@@ -763,9 +763,23 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                             }
 
                                                             context.goNamedAuth(
-                                                                'Home',
-                                                                context
-                                                                    .mounted);
+                                                              'Home',
+                                                              context.mounted,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    const TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .fade,
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          300),
+                                                                ),
+                                                              },
+                                                            );
                                                           },
                                                           text: 'Cadastrar',
                                                           options:
@@ -1355,9 +1369,23 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                             }
 
                                                             context.goNamedAuth(
-                                                                'Home',
-                                                                context
-                                                                    .mounted);
+                                                              'Home',
+                                                              context.mounted,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    const TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .fade,
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          300),
+                                                                ),
+                                                              },
+                                                            );
                                                           },
                                                           text: 'Entre',
                                                           options:
